@@ -38,7 +38,7 @@ class Utils {
         try {
             return await axios.patch(url, data, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `token ${token}`,
                 },
             }, data)
         } catch (e) {
@@ -50,7 +50,7 @@ class Utils {
         try {
             return await axios.get(url, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `token ${token}`,
                 },
             })
         } catch (e) {
@@ -60,7 +60,7 @@ class Utils {
 
     async postWithToken(url, token, payload){
         try {
-            return await axios.post(url, payload, {headers: { "Authorization": `Bearer ${token}`}})
+            return await axios.post(url, payload, {headers: { "Authorization": `token ${token}`}})
         }
         catch (e) {
             throw e.response;

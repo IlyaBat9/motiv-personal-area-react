@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import InputMask from 'react-input-mask';
-import {loginUser, logoutUser, setLoginError} from '../../../Store/Actions/AuthActions'
+import {loginUser, loginUserOtp, logoutUser, setLoginError} from '../../../Store/Actions/AuthActions'
 
 
 class LoginForm extends Component {
     state = {
         phone: "",
         password: "",
+        otp: "",
         rememberMe: false,
         mode: "password",
     };
 
-    composeUser() {
+    composeUser(mode) {
 
         function processPhone(phone) {
             let result = "";
@@ -22,9 +23,17 @@ class LoginForm extends Component {
             return result
         }
 
-        return {
-            "login": processPhone(this.state.phone),
-            "password": this.state.password,
+        if(mode === "password") {
+            return {
+                "login": processPhone(this.state.phone),
+                "password": this.state.password,
+            }
+        }
+        else if(mode === "otp"){
+            return {
+                "login": processPhone(this.state.phone),
+                "otp": this.state.otp,
+            }
         }
     }
 
@@ -43,11 +52,20 @@ class LoginForm extends Component {
             }
         }
 
-        if(preValidation(this.state.phone, this.state.password) === "ok") {
-            this.props.loginUser(this.composeUser(), this.state.rememberMe);
+        const mode = this.state.mode
+        if(mode === "password") {
+            if (preValidation(this.state.phone, this.state.password) === "ok") {
+                this.props.loginUser(this.composeUser("password"), this.state.rememberMe);
+            } else {
+                this.props.setLoginError("Пожалуйста заполните все поля")
+            }
         }
-        else{
-            this.props.setLoginError("Пожалуйста заполните все поля")
+        else if(mode === "otp") {
+            if (preValidation(this.state.phone, this.state.otp) === "ok") {
+                this.props.loginUserOtp(this.composeUser(mode), this.state.rememberMe);
+            } else {
+                this.props.setLoginError("Пожалуйста заполните все поля")
+            }
         }
     };
 
@@ -62,6 +80,11 @@ class LoginForm extends Component {
                 password: event.target.value
             });
         }
+        else if (event.target.name === "authPasswordFieldOtp") {
+            this.setState({
+                otp: event.target.value
+            });
+        }
         else if (event.target.name === "rememberMe") {
             this.setState({
                 rememberMe: !this.state.rememberMe
@@ -70,6 +93,34 @@ class LoginForm extends Component {
     };
 
     render() {
+        var authField;
+        var switchButton;
+        if(this.state.mode === 'password'){
+            authField = (<input
+                               type="password"
+                               name="authPasswordField"
+                               autoComplete="currentPassword"
+                               placeholder="пароль"
+                               value={this.state.password}
+                               onChange={this.handleChange}
+                        />);
+            switchButton = (<button type="button"
+                                    onClick={() => this.setState({mode: "otp"})}>Получить СМС с одноразовым паролем
+                            </button>)
+        }
+        else if(this.state.mode === 'otp'){
+            authField = (<input
+                                type="text"
+                                name="authPasswordFieldOtp"
+                                placeholder="одноразовый код"
+                                value={this.state.otp}
+                                onChange={this.handleChange}
+                        />);
+            switchButton = (<button
+                                type="button"
+                                onClick={() => this.setState({mode: "password"})}>Войти по паролю
+                            </button>)
+        }
         if(this.props.token){
             return (
                 <React.Fragment>
@@ -92,14 +143,7 @@ class LoginForm extends Component {
                                value={this.state.phone}
                                onChange={this.handleChange}
                         />
-                        <input className="col-md-10 offset-md-1 bordered-input"
-                               type="password"
-                               name="authPasswordField"
-                               autoComplete="currentPassword"
-                               placeholder="пароль"
-                               value={this.state.password}
-                               onChange={this.handleChange}
-                        />
+                        {authField}
                         <label className="checkbox-label col-md-8 offset-md-1" htmlFor="rememberMe">
                             <input className="checkbox"
                                    type="checkbox"
@@ -108,6 +152,7 @@ class LoginForm extends Component {
                                    onChange={this.handleChange}
                                    value={this.state.rememberMe}
                             /><p>запомнить меня</p></label>
+                        {switchButton}
                         <p>{JSON.stringify(this.state.response)}</p>
                         <div>{(this.props.errorText)}</div>
                         <input type='submit' value="Отправить" />
@@ -127,6 +172,7 @@ const MapStateToProps = (store) => {
 
 const MapDispatchToProps = dispatch => ({
     loginUser: (userData, rememberMe) => dispatch(loginUser(userData, rememberMe)),
+    loginUserOtp: (userData, rememberMe) =>  dispatch(loginUserOtp(userData, rememberMe)),
     logoutUser: () => dispatch(logoutUser()),
     setLoginError: (error) => dispatch(setLoginError(error))
 });

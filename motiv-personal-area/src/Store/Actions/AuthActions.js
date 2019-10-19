@@ -11,6 +11,17 @@ export const loginUser = (userData, rememberMe) => {
     }
 };
 
+export const loginUserOtp = (userData, rememberMe) => {
+    return async dispatch => {
+        try {
+            const response = await Auth.authUserOtp(userData, rememberMe);
+            dispatch(_loginUser(response.data.token));
+        } catch (e) {
+            dispatch(_setLoginError(e.data.detail))
+        }
+    }
+};
+
 export const validateToken = () => {
     return async dispatch => {
         try {

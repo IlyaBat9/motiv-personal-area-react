@@ -13,6 +13,12 @@ class Auth {
         return response;
     };
 
+    authUserOtp = async (userData, rememberMe) => {
+        const response = await Utils.post(`${BASE_URL}/api/auth/otp-login/`, userData);
+        Utils.setToken(response.data.token, rememberMe);
+        return response;
+    };
+
     logOutUser = () => {
         localStorage.removeItem("token");
         sessionStorage.removeItem("token");

@@ -1,0 +1,6 @@
+header {
+    height: 153px;
+    background-image: url('./media/header.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

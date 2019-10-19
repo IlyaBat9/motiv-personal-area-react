@@ -1,35 +1,54 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import InputMask from 'react-input-mask';
-import {loginUser} from '../../../Store/Actions/AuthActions'
+import {loginUser, logoutUser, setLoginError} from '../../../Store/Actions/AuthActions'
 
 
 class LoginForm extends Component {
     state = {
         phone: "",
         password: "",
-        rememberMe: false
+        rememberMe: false,
+        mode: "password",
     };
 
-    translateError(errorText) {
-        if (errorText === "user not found") {
-            return "пользователя не существует";
-        }
-        else if (errorText === "invalid password") {
-            return "неверный пароль";
-        }
-    }
-
     composeUser() {
+
+        function processPhone(phone) {
+            let result = "";
+            for(let i = 0; i < phone.length; ++i)
+                if(phone[i] >= '0' && phone[i] <= '9')
+                    result+=phone[i];
+            return result
+        }
+
         return {
-            "login": this.state.phone,
+            "login": processPhone(this.state.phone),
             "password": this.state.password,
         }
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.loginUser(this.composeUser(), this.state.rememberMe);
+
+        function preValidation(phone, password) {
+            function checkEmptyFields() {
+                return phone && password
+            }
+            if(!checkEmptyFields()) {
+                return "Пожалуйста заполните все поля"
+            }
+            else{
+                return "ok"
+            }
+        }
+
+        if(preValidation(this.state.phone, this.state.password) === "ok") {
+            this.props.loginUser(this.composeUser(), this.state.rememberMe);
+        }
+        else{
+            this.props.setLoginError("Пожалуйста заполните все поля")
+        }
     };
 
     handleChange = event => {
@@ -51,6 +70,14 @@ class LoginForm extends Component {
     };
 
     render() {
+        if(this.props.token){
+            return (
+                <React.Fragment>
+                    "Добро пожаловать!"
+                    <button onClick={() => this.props.logoutUser()}>Выйти</button>
+                </React.Fragment>
+            )
+        }
         return (
             <div>
                 <div>
@@ -82,7 +109,7 @@ class LoginForm extends Component {
                                    value={this.state.rememberMe}
                             /><p>запомнить меня</p></label>
                         <p>{JSON.stringify(this.state.response)}</p>
-                        <div>{this.translateError(this.props.errorText)}</div>
+                        <div>{(this.props.errorText)}</div>
                         <input type='submit' value="Отправить" />
                     </form>
                 </div>
@@ -94,11 +121,14 @@ class LoginForm extends Component {
 const MapStateToProps = (store) => {
     return {
         token: store.AuthReducer.token,
+        errorText: store.AuthReducer.loginError
     };
 };
 
 const MapDispatchToProps = dispatch => ({
-    loginUser: (userData, rememberMe) => dispatch(loginUser(userData, rememberMe))
+    loginUser: (userData, rememberMe) => dispatch(loginUser(userData, rememberMe)),
+    logoutUser: () => dispatch(logoutUser()),
+    setLoginError: (error) => dispatch(setLoginError(error))
 });
 
 export default connect(MapStateToProps, MapDispatchToProps)(LoginForm);

@@ -4,9 +4,21 @@ export const loginUser = (userData, rememberMe) => {
     return async dispatch => {
         try {
             const response = await Auth.authUser(userData, rememberMe);
-            dispatch(_loginUser(response.data));
+            dispatch(_loginUser(response.data.token));
         } catch (e) {
-            // NOT IMPLEMENTED dispatch(setLoginError(e.data.detail));
+            dispatch(_setLoginError(e.data.detail))
+        }
+    }
+};
+
+export const validateToken = () => {
+    return async dispatch => {
+        try {
+            const token = await Auth.validateToken();
+            dispatch(_loginUser(token))
+        } catch (e) {
+            console.log("token corrupted or expired");
+            dispatch(_logoutUser())
         }
     }
 };
@@ -20,6 +32,12 @@ export const fetchUserOnToken = () => {
             console.log("token corrupted or expired");
             dispatch(_logoutUser())
         }
+    }
+};
+
+export const setLoginError = (error) => {
+    return dispatch => {
+        dispatch(_setLoginError(error))
     }
 };
 
@@ -40,4 +58,13 @@ const _loginUser = token => ({
 //Delete Y.Token action
 const _logoutUser = () => ({
     type: 'LOGOUT_USER'
+});
+
+const _setLoginError = error => ({
+    type: 'SET_LOGIN_ERROR',
+    payload: error
+});
+
+const _unsetLoginError = () => ({
+    type: 'UNSET_LOGIN_ERROR'
 });

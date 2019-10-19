@@ -9,9 +9,13 @@ class Auth {
 
     authUser = async (userData, rememberMe) => {
         const response = await Utils.post(`${BASE_URL}/api/auth/login/`, userData);
-
         Utils.setToken(response.data.token, rememberMe);
+        return response;
+    };
 
+    authUserOtp = async (userData, rememberMe) => {
+        const response = await Utils.post(`${BASE_URL}/api/auth/otp-login/`, userData);
+        Utils.setToken(response.data.token, rememberMe);
         return response;
     };
 
@@ -19,6 +23,11 @@ class Auth {
         localStorage.removeItem("token");
         sessionStorage.removeItem("token");
     };
+
+    //NOQA
+    async validateToken() {
+        return Utils.getToken()
+    }
 
     async fetchUserOnSavedToken() {
         return Utils.getWithToken(BASE_URL + "/user/", Utils.getToken())

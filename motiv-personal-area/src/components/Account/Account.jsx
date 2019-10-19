@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 function Account(props) {
     if(!props.token){
-        return <Redirect to={"/auth"}/>
+        //return <Redirect to={"/auth"}/>
     }
     return (
         <React.Fragment>

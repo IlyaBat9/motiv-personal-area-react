@@ -8,6 +8,7 @@ class LoginForm extends Component {
     state = {
         phone: "",
         password: "",
+        rememberMe: false
     };
 
     translateError(errorText) {
@@ -21,26 +22,31 @@ class LoginForm extends Component {
 
     composeUser() {
         return {
-            "auth_value": this.state.username,
+            "login": this.state.phone,
             "password": this.state.password,
         }
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.loginUser(this.composeUser());
+        this.props.loginUser(this.composeUser(), this.state.rememberMe);
     };
 
     handleChange = event => {
         if(event.target.name === "authLoginField") {
             this.setState({
-                username: event.target.value
+                phone: event.target.value
             });
         }
         else if (event.target.name === "authPasswordField") {
             this.setState({
                 password: event.target.value
             });
+        }
+        else if (event.target.name === "rememberMe") {
+            this.setState({
+                rememberMe: !this.state.rememberMe
+            })
         }
     };
 
@@ -67,6 +73,14 @@ class LoginForm extends Component {
                                value={this.state.password}
                                onChange={this.handleChange}
                         />
+                        <label className="checkbox-label col-md-8 offset-md-1" htmlFor="rememberMe">
+                            <input className="checkbox"
+                                   type="checkbox"
+                                   name="rememberMe"
+                                   id="rememberMe"
+                                   onChange={this.handleChange}
+                                   value={this.state.rememberMe}
+                            /><p>запомнить меня</p></label>
                         <p>{JSON.stringify(this.state.response)}</p>
                         <div>{this.translateError(this.props.errorText)}</div>
                         <input type='submit' value="Отправить" />

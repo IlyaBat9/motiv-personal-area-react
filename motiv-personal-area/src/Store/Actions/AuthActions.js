@@ -26,6 +26,7 @@ export const fetchUserOnToken = () => {
 //Delete Y.Token action
 export const logoutUser = () => {
     return dispatch => {
+        Auth.logOutUser();
         dispatch(_logoutUser());
     }
 };

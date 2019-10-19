@@ -8,23 +8,7 @@ class Auth {
     };
 
     authUser = async (userData, rememberMe) => {
-        const response = await Utils.post(`${BASE_URL}/user/auth`, userData);
-
-        Utils.setToken(response.data.token, rememberMe);
-
-        return response;
-    };
-
-    registerUser = async (userData, rememberMe) => {
-        const response = await Utils.post(`${BASE_URL}/user/create/`, userData);
-
-        Utils.setToken(response.data.token, rememberMe);
-
-        return response;
-    };
-
-    registerBusinessUser = async (userData, rememberMe) => {
-        const response = await Utils.post(`${BASE_URL}/user/create/business/`, userData);
+        const response = await Utils.post(`${BASE_URL}/api/auth/login/`, userData);
 
         Utils.setToken(response.data.token, rememberMe);
 

@@ -1,0 +1,62 @@
+.page__container {
+    display: flex;
+    padding-top: 8vh;
+}
+
+.account-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 140px;
+    height: 156px;
+    border: solid 2px #afb0b0;
+    list-style: none;
+    padding: 10px 20px;
+    margin: 0 90px 0 0;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 520px;
+    height: 250px;
+    padding: 0 30px 30px;
+    box-shadow: 0 10px 20px rgba(50, 50, 50, 0.2);
+}
+
+.user-package-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.package-balance {
+    width: 50%;
+}
+
+.balance-parts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.balance-part {
+    display: flex;
+    align-items: center;
+}
+
+.balance-part > img {
+    margin-right: 5px;
+}
+
+.balance-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.balance {
+    font-size: 52px;
+    font-weight: bold;
+    color: #FA6600;
+}

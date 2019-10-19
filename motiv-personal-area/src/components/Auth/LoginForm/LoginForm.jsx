@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import InputMask from 'react-input-mask';
-class LoginForm extends Component {
+import {loginUser} from '../../../Store/Actions/AuthActions'
 
+
+class LoginForm extends Component {
     state = {
         phone: "",
         password: "",
@@ -26,7 +28,7 @@ class LoginForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.loginFetch(this.composeUser());
+        this.props.loginUser(this.composeUser());
     };
 
     handleChange = event => {
@@ -82,7 +84,7 @@ const MapStateToProps = (store) => {
 };
 
 const MapDispatchToProps = dispatch => ({
-    loginFetch:
+    loginUser: (userData, rememberMe) => dispatch(loginUser(userData, rememberMe))
 });
 
 export default connect(MapStateToProps, MapDispatchToProps)(LoginForm);

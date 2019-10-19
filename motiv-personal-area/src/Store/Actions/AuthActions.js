@@ -1,10 +1,10 @@
 import Auth from "../Api/Auth";
 
-export const loginUser = (token) => {
+export const loginUser = (userData, rememberMe) => {
     return async dispatch => {
         try {
             const response = await Auth.authUser(userData, rememberMe);
-            dispatch(loginUser(response.data));
+            dispatch(_loginUser(response.data));
         } catch (e) {
             // NOT IMPLEMENTED dispatch(setLoginError(e.data.detail));
         }
@@ -18,7 +18,7 @@ export const fetchUserOnToken = () => {
             dispatch(loginUser(response.data))
         } catch (e) {
             console.log("token corrupted or expired");
-            dispatch(logOutUser())
+            dispatch(_logoutUser())
         }
     }
 };

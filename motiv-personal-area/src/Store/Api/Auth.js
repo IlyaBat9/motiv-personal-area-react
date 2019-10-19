@@ -1,4 +1,4 @@
-import {BASE_URL} from "./settings";
+import {BASE_URL} from "./Settings";
 import Utils from "./Utils"
 
 class Auth {

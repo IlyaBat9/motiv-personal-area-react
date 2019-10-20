@@ -1,0 +1,85 @@
+.main-motiv-page {
+    background-image: url('./media/promoBack.png');
+    height: 100vh;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.auth-form {
+    position: absolute;
+    top: 2.82vw;
+    right: 7vw;
+    width: 320px;
+    height: 340px;
+    background-color: #fff;
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.auth-heading {
+    color: #fa6600;
+    margin-bottom: 20px;
+}
+
+.auth-field {
+    margin: 5px 0;
+    width: 100%;
+    line-height: 20px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.auth-variant-change {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: #fa6600;
+    background-color: transparent;
+    width: 100%;
+    text-align: end;
+    height: 30px;
+}
+
+.auth-variant-change:active,
+.auth-variant-change:focus {
+    outline: none;
+}
+
+.auth-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.auth-button {
+    width: 100%;
+    background-color: #fa6600;
+    color: #fff;
+    border: none;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.auth-button:focus,
+.auth-button:active {
+    outline: none;
+}
+
+.auth-error {
+    height: 0;
+}
+
+@media (max-width: 1024px) {
+    .main-motiv-page {
+        background: none;
+    }
+
+    .auth-form {
+        position: relative;
+        margin: 0 auto;
+        top: auto;
+        right: auto;
+    }
+    .auth-field {
+        border: 2px solid rgb(196, 196, 196);
+    }
+}

@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./Fonts/ubuntu.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./Fonts/ubuntumedium.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./Fonts/ubuntubold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: Ubuntu, sans-serif, monospace;
+}
+
+.page__container {
+  margin: 0 auto;
+  padding: 0 64px;
+  max-width: 1200px;
+}
+
+.uppercase-transform {
+  text-transform: uppercase;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.bold-text-14 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.bold-text-20 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.bold-text-38 {
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.medium-text-12 {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.medium-text-20 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.medium-text-24 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.regular-text-12 {
+  font-size: 12px;
+}
+
+.regular-text-14 {
+  font-size: 14px;
+}
+
+.color-grey {
+  color: #8e8e8e;
+}

@@ -1,0 +1,12 @@
+header {
+    height: 153px;
+    background-image: url('./media/header.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 1024px) {
+    header {
+        background-image: url('./media/header-mobile.png');
+    }
+}

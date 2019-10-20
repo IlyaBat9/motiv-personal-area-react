@@ -1,0 +1,236 @@
+.page__container {
+    display: flex;
+    padding-top: 8vh;
+    padding-bottom: 12vh;
+}
+
+.account-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 14%;
+    height: 220px;
+    list-style: none;
+    padding: 0;
+    margin: 0 8% 0 0;
+}
+
+.data-account-container {
+    width: 78%;
+}
+
+.account-data,
+.tariff-and-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    padding: 26px;
+    box-sizing: border-box;
+}
+
+.user-card {
+    justify-content: space-between;
+    width: 60%;
+}
+
+.user-card,
+.package-card {
+    height: 260px;
+}
+
+.user-phone {
+    margin-top: 20px;
+}
+
+.balance {
+    font-size: 57px;
+    font-weight: bold;
+    color: #FA6600;
+}
+
+.balance-valute {
+    font-size: 45px;
+}
+
+.package-card {
+    width: 38%;
+}
+
+.balance-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.balance-parts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.balance-part {
+    display: flex;
+    align-items: center;
+}
+
+.balance-part > img {
+    margin-right: 5px;
+}
+
+.state-rectangle {
+    background-color: #FA6600;
+    width: 100%;
+    height: 30px;
+    margin: 20px 0 0 0;
+    box-sizing: border-box;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    line-height: 30px;
+}
+
+.state-rectangle-1 {
+    border-right: solid 20px #999;
+}
+
+.state-rectangle-2 {
+    border-right: solid 16px #999;
+}
+
+.state-rectangle-3 {
+    border-right: solid 10px #999;
+}
+
+.region {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.tariff {
+    width: 34%;
+}
+
+.tariff-card {
+    height: 350px;
+    justify-content: space-between;
+}
+
+.tariff-image {
+    width: 80%;
+    max-width: 200px;
+    max-height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -40px;
+}
+
+.services {
+    width: 64%;
+}
+
+.services-card {
+    height: 350px;
+    overflow: hidden;
+}
+
+.scrolling {
+    overflow-y: scroll;
+    margin-right: -20%;
+    padding-right: 20%;
+}
+
+.service {
+    min-height: 92px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-text {
+    width: 80%;
+}
+
+.service-switch[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.service-switch-label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 60px;
+    height: 22px;
+    display: block;
+    margin-top: 12px;
+    border-radius: 17px;
+    position: relative;
+    background-color: rgb(196, 196, 196);
+}
+
+.service-switch-label::after {
+    content: '';
+    position: absolute;
+    z-index: 1000000000;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    margin-top: -4px;
+    background: #FA6600;
+    border-radius: 15px;
+    transition: .3s;
+    box-shadow: 0 0 10px rgba(250, 102, 0, .75);
+}
+
+.service-switch:checked+.service-switch-label {
+    background-color: rgba(250, 102, 0, .5);
+}
+
+.service-switch:checked+.service-switch-label::after {
+    left: calc(100% - 28px);
+}
+
+.service-switch-label:active::after {
+    width: 30px;
+}
+
+.sequrity-card {
+    margin-top: 5vh;
+    width: 100%;
+    height: 260px;
+}
+
+.details-card {
+    margin-top: 5vh;
+    width: 100%;
+    height: 300px;
+}
+
+@media (max-width: 1024px) {
+    .page__container {
+        flex-wrap: wrap;
+        padding: 0 24px 24px;
+    }
+
+    .account-menu,
+    .data-account-container,
+    .user-card,
+    .details-card,
+    .package-card,
+    .tariff,
+    .sequrity-card,
+    .services {
+        width: 100%;
+    }
+
+    .user-card {
+        height: 400px;
+        margin-bottom: 5vh;
+    }
+}

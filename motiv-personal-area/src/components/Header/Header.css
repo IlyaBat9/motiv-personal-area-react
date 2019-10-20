@@ -4,3 +4,9 @@ header {
     background-size: 100%;
     background-repeat: no-repeat;
 }
+
+@media (max-width: 1024px) {
+    header {
+        background-image: url('./media/header-mobile.png');
+    }
+}

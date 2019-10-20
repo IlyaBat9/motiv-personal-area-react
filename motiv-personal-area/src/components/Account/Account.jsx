@@ -7,6 +7,7 @@ import imgBalanceMinutes from './media/package-minutes.png';
 import imgBalanceSms from './media/package-sms.png';
 import tariffImage from './media/tariffImage.png';
 import Header from '../Header/Header';
+import APK from './media/app-debug.apk'
 
 function Account(props) {
     if (props.token === undefined) {
@@ -119,6 +120,9 @@ function Account(props) {
                         <div className="card details-card">
                             <p className="medium-text-24">Детализация</p>
                         </div>
+                    </div>
+                    <div className="region">
+                        <a href={APK}>Мобильный личный кабинет</a>
                     </div>
                 </div>
             </div>

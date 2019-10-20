@@ -9,10 +9,6 @@ import {connect} from "react-redux";
 
 class App extends Component {
 
-    componentDidMount() {
-        this.props.validateToken()
-    }
-
     render() {
         return (
             <React.Fragment>

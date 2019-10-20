@@ -6,6 +6,7 @@ import imgBalanceGb from './media/package-gb.png';
 import imgBalanceMinutes from './media/package-minutes.png';
 import imgBalanceSms from './media/package-sms.png';
 import tariffImage from './media/tariffImage.png';
+import Header from '../Header/Header';
 
 function Account(props) {
     if (!props.token) {
@@ -36,7 +37,7 @@ function Account(props) {
             </div>
             <input
                 type="checkbox"
-                id={"switch"+ service.id}
+                id={"switch" + service.id}
                 className="service-switch"
                 defaultChecked={service.checked}
             />
@@ -46,76 +47,79 @@ function Account(props) {
     );
 
     return (
-        <div className="page__container">
-            <ul className="medium-text-20 account-menu">
-                <li>Личные данные</li>
-                <li>Мой тариф и услуги</li>
-                <li>Безопасность и вход</li>
-                <li>Детализация</li>
-            </ul>
-            <div className="data-account-container">
-                <div className="account-data">
-                    <div className="card user-card">
-                        <p className="bold-text-20 uppercase-transform m-0 user-full-name">Садовский Георгий Александрович</p>
-                        <p className="bold-text-38 m-0 user-phone">+7 952 131 64 07</p>
-                        <div className="balance-container">
-                            <p className="regular-text-12 m-0 color-grey">Баланс на {currentDate}</p>
-                            <div className="medium-text-12 balance">{balance} <span className="balance-valute">₽</span></div>
-                            <p className="regular-text-12 m-0 color-grey" m-0>Рекомендуем пополнить счет до {nextPaymentDate}</p>
-                        </div>
-                    </div>
-                    <div className="card package-card">
-                        <p className="regular-text-12 m-0 color-grey">Остаток по пакету</p>
-                        <div className="balance-parts medium-text-12">
-                            <div className="balance-part">
-                                <img src={imgBalanceGb}></img>
-                                <div>{balanceGb} ГБ</div>
-                            </div>
-                            <div className="balance-part">
-                                <img src={imgBalanceMinutes} />
-                                <div>{balanceMinutes} мин</div>
-                            </div>
-                            <div className="balance-part">
-                                <img src={imgBalanceSms} />
-                                <div>{balanceSms} sms</div>
+        <React.Fragment>
+            <Header />
+            <div className="page__container">
+                <ul className="medium-text-20 account-menu">
+                    <li>Личные данные</li>
+                    <li>Мой тариф и услуги</li>
+                    <li>Безопасность и вход</li>
+                    <li>Детализация</li>
+                </ul>
+                <div className="data-account-container">
+                    <div className="account-data">
+                        <div className="card user-card">
+                            <p className="bold-text-20 uppercase-transform m-0 user-full-name">Садовский Георгий Александрович</p>
+                            <p className="bold-text-38 m-0 user-phone">+7 952 131 64 07</p>
+                            <div className="balance-container">
+                                <p className="regular-text-12 m-0 color-grey">Баланс на {currentDate}</p>
+                                <div className="medium-text-12 balance">{balance} <span className="balance-valute">₽</span></div>
+                                <p className="regular-text-12 m-0 color-grey" m-0>Рекомендуем пополнить счет до {nextPaymentDate}</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="region">
-                        <p className="regular-text-12">Домашний регион</p>
-                        <p className="bold-text-20 m-0">{region}</p>
-                    </div>
-                </div>
-                <div className="tariff-and-services">
-                    <div className="tariff">
-                        <p className="regular-text-12">Активный тариф</p>
-                        <div className="card tariff-card">
-                            <p className="medium-text-24 m-0">{tariff}</p>
-                            <img src={tariffImage} className="tariff-image" />
-                            <p className="medium-text-12 color-grey m-0 tariff-promo">{tariffPromo}</p>
+                        <div className="card package-card">
+                            <p className="regular-text-12 m-0 color-grey">Остаток по пакету</p>
+                            <div className="balance-parts medium-text-12">
+                                <div className="balance-part">
+                                    <img src={imgBalanceGb}></img>
+                                    <div>{balanceGb} ГБ</div>
+                                </div>
+                                <div className="balance-part">
+                                    <img src={imgBalanceMinutes} />
+                                    <div>{balanceMinutes} мин</div>
+                                </div>
+                                <div className="balance-part">
+                                    <img src={imgBalanceSms} />
+                                    <div>{balanceSms} sms</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="region">
+                            <p className="regular-text-12">Домашний регион</p>
+                            <p className="bold-text-20 m-0">{region}</p>
                         </div>
                     </div>
-                    <div className="services">
-                        <p className="regular-text-12">Подключенные услуги</p>
-                        <div className="card services-card">
-                            <div className="scrolling">
-                                {servicesDom}
+                    <div className="tariff-and-services">
+                        <div className="tariff">
+                            <p className="regular-text-12">Активный тариф</p>
+                            <div className="card tariff-card">
+                                <p className="medium-text-24 m-0">{tariff}</p>
+                                <img src={tariffImage} className="tariff-image" />
+                                <p className="medium-text-12 color-grey m-0 tariff-promo">{tariffPromo}</p>
+                            </div>
+                        </div>
+                        <div className="services">
+                            <p className="regular-text-12">Подключенные услуги</p>
+                            <div className="card services-card">
+                                <div className="scrolling">
+                                    {servicesDom}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="sequrity">
-                    <div className="card sequrity-card">
-                        <p className="medium-text-24">Настройки безопасности</p>
+                    <div className="sequrity">
+                        <div className="card sequrity-card">
+                            <p className="medium-text-24">Настройки безопасности</p>
+                        </div>
                     </div>
-                </div>
-                <div className="details">
-                    <div className="card details-card">
-                        <p className="medium-text-24">Детализация</p>
+                    <div className="details">
+                        <div className="card details-card">
+                            <p className="medium-text-24">Детализация</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 

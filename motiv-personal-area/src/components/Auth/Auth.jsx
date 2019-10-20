@@ -1,12 +1,12 @@
 import React from 'react';
 import LoginForm from "./LoginForm/LoginForm";
+import './Auth.css';
 
 function Auth() {
     return (
-        <React.Fragment>
-            <h1>AuthHolder</h1>
+        <div className="main-motiv-page">
             <LoginForm/>
-        </React.Fragment>
+        </div>
     );
 }
 

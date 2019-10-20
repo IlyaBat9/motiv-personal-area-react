@@ -45,6 +45,11 @@ code {
   margin: 0;
 }
 
+.bold-text-14 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .bold-text-20 {
   font-size: 20px;
   font-weight: bold;
@@ -72,6 +77,10 @@ code {
 
 .regular-text-12 {
   font-size: 12px;
+}
+
+.regular-text-14 {
+  font-size: 14px;
 }
 
 .color-grey {

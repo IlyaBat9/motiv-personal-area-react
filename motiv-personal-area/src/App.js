@@ -16,7 +16,7 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
-            <Header />
+                <Header />
                 <Switch>
                     <Route path="/" exact component={Account}/>
                     <Route path="/auth" component={Auth}/>

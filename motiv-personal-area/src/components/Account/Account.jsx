@@ -83,6 +83,9 @@ function Account(props) {
                                     <div>{balanceSms} sms</div>
                                 </div>
                             </div>
+                            <div className="state-rectangle regular-text-12 state-rectangle-1">9.9 из 10 ГБ</div>
+                            <div className="state-rectangle regular-text-12 state-rectangle-2">450 из 500 мин</div>
+                            <div className="state-rectangle regular-text-12 state-rectangle-3">49 из 50 sms</div>
                         </div>
                         <div className="region">
                             <p className="regular-text-12">Домашний регион</p>

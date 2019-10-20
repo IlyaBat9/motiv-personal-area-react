@@ -83,6 +83,30 @@
     margin-right: 5px;
 }
 
+.state-rectangle {
+    background-color: #FA6600;
+    width: 100%;
+    height: 30px;
+    margin: 20px 0 0 0;
+    box-sizing: border-box;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    line-height: 30px;
+}
+
+.state-rectangle-1 {
+    border-right: solid 20px #999;
+}
+
+.state-rectangle-2 {
+    border-right: solid 16px #999;
+}
+
+.state-rectangle-3 {
+    border-right: solid 10px #999;
+}
 
 .region {
     margin-top: 5vh;

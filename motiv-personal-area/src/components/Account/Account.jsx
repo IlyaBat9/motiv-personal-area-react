@@ -9,8 +9,8 @@ import tariffImage from './media/tariffImage.png';
 import Header from '../Header/Header';
 
 function Account(props) {
-    if (!props.token) {
-        //return <Redirect to={"/auth"}/>
+    if (props.token === undefined) {
+        return <Redirect to={"/auth"}/>
     }
 
     let balanceGb = 9.9;

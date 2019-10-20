@@ -1,6 +1,7 @@
 import {BASE_URL} from "./Settings";
 import Utils from "./Utils"
 
+
 class Auth {
 
     patchUser = async (newData, userId) => {
@@ -8,14 +9,40 @@ class Auth {
     };
 
     authUser = async (userData, rememberMe) => {
-        const response = await Utils.post(`${BASE_URL}/api/auth/login/`, userData);
-        Utils.setToken(response.data.token, rememberMe);
+        var response;
+        if(userData.login == '79521316407' || userData.password == '1234'){
+            response = {
+                token: "foo",
+                detail: ""
+            }
+        }
+        else{
+            response = {
+                token: undefined,
+                detail: "Неверный логин или пароль"
+            }
+        }
+        //const response = await Utils.post(`${BASE_URL}/api/auth/login/`, userData);
+        Utils.setToken(response.token, rememberMe);
         return response;
     };
 
     authUserOtp = async (userData, rememberMe) => {
-        const response = await Utils.post(`${BASE_URL}/api/auth/otp-login/`, userData);
-        Utils.setToken(response.data.token, rememberMe);
+        var response;
+        if(userData.login === '79521316407' || userData.otp === '0000'){
+            response = {
+                token: "foo",
+                detail: ""
+            }
+        }
+        else{
+            response = {
+                token: undefined,
+                detail: "Неверный логин или пароль"
+            }
+        }
+        //const response = await Utils.post(`${BASE_URL}/api/auth/login/`, userData);
+        Utils.setToken(response.token, rememberMe);
         return response;
     };
 

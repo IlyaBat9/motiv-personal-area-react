@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import InputMask from 'react-input-mask';
 import { loginUser, loginUserOtp, logoutUser, setLoginError } from '../../../Store/Actions/AuthActions'
-
+import {Redirect} from 'react-router-dom';
 
 class LoginForm extends Component {
     state = {
@@ -130,8 +130,7 @@ class LoginForm extends Component {
         if (this.props.token) {
             return (
                 <React.Fragment>
-                    "Добро пожаловать!"
-                    <button onClick={() => this.props.logoutUser()}>Выйти</button>
+                    <Redirect to={"/"}/>
                 </React.Fragment>
             )
         }
